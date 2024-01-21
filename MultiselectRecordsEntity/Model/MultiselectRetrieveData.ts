@@ -53,7 +53,7 @@ export class MultiselectModel {
      * Mock data when this._isFake = true in index.ts
      */
     public static GetDataFromMock(filter: any) {
-        var mockDataFiltered = mockData.filter(x => x.name.toLowerCase().includes(filter.toLowerCase()))
+        const mockDataFiltered = mockData.filter(x => x.name.toLowerCase().includes(filter.toLowerCase()))
         return Promise.resolve(mockDataFiltered);
 
     }

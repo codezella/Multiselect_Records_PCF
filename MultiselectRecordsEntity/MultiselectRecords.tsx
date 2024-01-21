@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import * as React from "react";
 
 import { Stack, IDetailsRowProps, IRenderFunction, CommandBarButton, PrimaryButton, IIconProps, initializeIcons, Spinner, SpinnerSize, IconButton, TooltipHost } from '@fluentui/react';
@@ -76,7 +77,7 @@ const MultiselectRecords = (props: IMultiselectProps) => {
         if (fieldValueArray.length == 0) {
             return null;
         }
-        for (let fieldValue of fieldValueArray) {
+        for (const fieldValue of fieldValueArray) {
             if (fieldValue != null) {
                 filter += `${props.attributeid} eq ${JSON.parse(fieldValue)["id"]} or `
             }
@@ -94,8 +95,8 @@ const MultiselectRecords = (props: IMultiselectProps) => {
         if (recordsPassedParamCopy != null || recordsRetrieved != null && recordsRetrieved.entities.length != 0) {
             const selectedItemsWhenOpened: any = recordsRetrieved != null ? recordsRetrieved.entities : [];
             for (var item of selectedItemsWhenOpened) {
-                var itemFiltered = recordsPassedParamCopy.filter((x: any) => x[props.attributeid] == item[props.attributeid]);
-                var index = recordsPassedParamCopy.findIndex((x: any) => x[props.attributeid] == item[props.attributeid]);
+                const itemFiltered = recordsPassedParamCopy.filter((x: any) => x[props.attributeid] == item[props.attributeid]);
+                const index = recordsPassedParamCopy.findIndex((x: any) => x[props.attributeid] == item[props.attributeid]);
                 if (index != -1) {
                     recordsPassedParamCopy.splice(index, 1);
                     recordsPassedParamCopy.unshift(itemFiltered[0]);
@@ -111,7 +112,7 @@ const MultiselectRecords = (props: IMultiselectProps) => {
             let selectedItemsConcat: any = selectedItemsWhenOpened.concat(selectedItems);
             selectedItemsConcat = selectedItemsConcat.filter((a: any, b: any) => selectedItemsConcat.indexOf(a) === b)
 
-            for (let item of selectedItemsConcat) {
+            for (const item of selectedItemsConcat) {
                 const indexItem = recordsPassedParamCopy.findIndex((x: any) => item[props.attributeid] == x[props.attributeid])
                 if (indexItem != -1) {
                     selection.setIndexSelected(parseInt(indexItem), true, true);
@@ -128,10 +129,10 @@ const MultiselectRecords = (props: IMultiselectProps) => {
     }
     const setItemsFromTextFieldValue = async () => {
         try {
-            let valuesInTheTextField: any = []
+            const valuesInTheTextField: any = []
             if (textFieldValue != null && textFieldValue != "" && textFieldValue != "[]") {
-                let textFieldTemp = JSON.parse(textFieldValue);
-                for (var item of textFieldTemp) {
+                const textFieldTemp = JSON.parse(textFieldValue);
+                for (const item of textFieldTemp) {
                     valuesInTheTextField.push(JSON.stringify(item));
                 }
             } else {
@@ -151,15 +152,15 @@ const MultiselectRecords = (props: IMultiselectProps) => {
 
     const selectRecordItemsAndPushThem = () => {
         selection.setAllSelected(false);
-        let itemsSelected: any = []
+        const itemsSelected: any = []
         if (selectedRecordItems != null && selectedRecordItems.length > 0) {
-            for (var selectedRecordItem of selectedRecordItems) {
+            for (const selectedRecordItem of selectedRecordItems) {
                 itemsSelected.push(selectedRecordItem);
             }
         } else {
             if (textFieldValue != "" && textFieldValue != "[]") {
-                let textFieldTemp = JSON.parse(textFieldValue);
-                for (var item of textFieldTemp) {
+                const textFieldTemp = JSON.parse(textFieldValue);
+                for (const item of textFieldTemp) {
                     itemsSelected.push(JSON.stringify(item));
                 }
                 setMyItems(itemsSelected)
@@ -484,7 +485,7 @@ const MultiselectRecords = (props: IMultiselectProps) => {
 
     const filterRecordsClick = async () => {
         const searchInputRef: any = refSearchInput.current;
-        let searchInputValue = searchInputRef.value
+        const searchInputValue = searchInputRef.value
         setSearchValue(searchInputValue);
 
         // Send filter outside
@@ -538,10 +539,10 @@ const MultiselectRecords = (props: IMultiselectProps) => {
     }
 
     const getTextFieldJSON = () => {
-        let myItemsCopy: any = [];
+        const myItemsCopy: any = [];
         if (textFieldValue != "" && textFieldValue != "[]") {
-            let textFieldTemp = JSON.parse(textFieldValue);
-            for (var item of textFieldTemp) {
+            const textFieldTemp = JSON.parse(textFieldValue);
+            for (const item of textFieldTemp) {
                 myItemsCopy.push(JSON.stringify(item));
             }
         }
@@ -582,13 +583,13 @@ const MultiselectRecords = (props: IMultiselectProps) => {
         const listArray: any = Array.isArray(listSelection) ? listSelection : [listSelection];
 
         setSelectedRecordItems([])
-        let selectedRecordItemsCopy: any = [];
-        let selectedItemsCopy: any = [];
-        let guidsAdded: string[] = [];
-        for (let item of listArray) {
+        const selectedRecordItemsCopy: any = [];
+        const selectedItemsCopy: any = [];
+        const guidsAdded: string[] = [];
+        for (const item of listArray) {
             if (!guidsAdded.includes(item[props.attributeid])) {
                 selectedRecordItemsCopy.push(item);
-                let json = { "id": item[props.attributeid], "name": item[props.data] }
+                const json = { "id": item[props.attributeid], "name": item[props.data] }
                 guidsAdded.push(item[props.attributeid]);
                 selectedItemsCopy.push(JSON.stringify(json));
             }
@@ -605,13 +606,13 @@ const MultiselectRecords = (props: IMultiselectProps) => {
             if (!Utilities.isJson(textFieldValue)) {
                 return;
             }
-            var values = JSON.parse(textFieldValue)
+            const values = JSON.parse(textFieldValue)
             const arrayAllItems = recordsProp != null ? recordsProp : listItems != null && listItems.length > 0 ? listItems : recordsProp;
             if (arrayAllItems != null && arrayAllItems.length > 0) {
 
                 for (var item of values.reverse()) {
-                    var itemFiltered = arrayAllItems.filter((x: any) => x[props.attributeid] == item["id"]);
-                    var index = arrayAllItems.findIndex((x: any) => x[props.attributeid] == item["id"]);
+                    const itemFiltered = arrayAllItems.filter((x: any) => x[props.attributeid] == item["id"]);
+                    const index = arrayAllItems.findIndex((x: any) => x[props.attributeid] == item["id"]);
                     if (index != -1) {
                         arrayAllItems.splice(index, 1);
                         arrayAllItems.unshift(itemFiltered[0]);
@@ -623,7 +624,7 @@ const MultiselectRecords = (props: IMultiselectProps) => {
                 setListItems(copy.slice());
                 selection.setItems(copy.slice(), true);
 
-                for (let item of selectedItems) {
+                for (const item of selectedItems) {
                     const indexItem = copy.findIndex((x: any) => item[props.attributeid] == x[props.attributeid])
                     if (indexItem != -1) {
                         selection.setIndexSelected(parseInt(indexItem), true, true);

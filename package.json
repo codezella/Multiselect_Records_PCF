@@ -19,7 +19,10 @@
   },
   "devDependencies": {
     "@types/react": "^16.9.34",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
     "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
     "pcf-scripts": "^1",
     "pcf-start": "^1",
     "typescript": "^3.9.10"
