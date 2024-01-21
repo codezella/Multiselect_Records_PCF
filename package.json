@@ -19,7 +19,9 @@
   },
   "devDependencies": {
     "@types/react": "^16.9.34",
+    "eslint": "^8.56.0",
     "pcf-scripts": "^1",
-    "pcf-start": "^1"
+    "pcf-start": "^1",
+    "typescript": "^3.9.10"
   }
 }
